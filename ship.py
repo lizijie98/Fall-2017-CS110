@@ -2,7 +2,7 @@ import gameobject
 import math
 class Ship:
 	def __init__(self, position, power, fuel, image):
-		self.object = gameobject.GameObject(position, 0, "Player")
+		self.object = gameobject.GameObject(position, 0, "Player", "player")
 		self.velocity = (0,0)
 		self.power = power
 		self.fuel = fuel

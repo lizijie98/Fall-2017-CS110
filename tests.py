@@ -1,9 +1,8 @@
 import planet
 import ship
 def main():
-	#plan = planet.Planet(10, 100)
-	#print(plan.nodes)
-	#plan.drawPlanet()
+	plan = planet.Planet(10, 100)
+	print(plan.nodes)
 
 	player = ship.Ship((0,0), 10, 500, "image")
 	player.forward()
