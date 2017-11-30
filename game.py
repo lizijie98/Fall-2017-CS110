@@ -12,7 +12,7 @@ class Controller:
         self.background = pygame.Surface(self.screen.get_size()).convert()
         """Load the sprites that we need"""
         self.ship = ship.Ship()
-        self.sprites = pygame.sprite.Group((self.hero,))
+        #self.sprites = pygame.sprite.Group((self.ship,))
 
     def mainLoop(self):
         """This is the Main Loop of the Game"""
@@ -28,11 +28,11 @@ class Controller:
                     elif(event.key == pygame.K_LEFT or event.key == pygame.K_a):
                         self.ship.turn(1)
                     elif(event.key == pygame.K_RIGHT or event.key == pygame.K_d):
-                        self.ship.move_right(-1)
+                        self.ship.turn(-1)
             
             #redraw the entire screen
             self.screen.blit(self.background, (0, 0))
-            self.sprites.draw(self.screen)
+            #self.sprites.draw(self.screen)
             pygame.display.flip()
 
 
