@@ -25,10 +25,14 @@ class Controller:
                 if event.type == pygame.KEYDOWN:
                     if(event.key == pygame.K_UP or event.key == pygame.K_w):
                         self.ship.forward()
-                    elif(event.key == pygame.K_LEFT or event.key == pygame.K_a):
+                    elif(event.key == pygame.K_q):
                         self.ship.turn(1)
-                    elif(event.key == pygame.K_RIGHT or event.key == pygame.K_d):
+                    elif(event.key == pygame.K_e):
                         self.ship.turn(-1)
+                    elif(event.key == pygame.K_LEFT or event.key == pygame.K_a):
+                        self.ship.left()
+                    elif(event.key == pygame.K_RIGHT or event.key == pygame.K_d):
+                        self.ship.right()
             
             #redraw the entire screen
             self.screen.blit(self.background, (0, 0))
