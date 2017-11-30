@@ -1,22 +1,40 @@
+import pygame
 import gameobject
 import math
+
 class Ship:
 	def __init__(self, position = (0,0)):
 		self.object = gameobject.GameObject(position, 0, "Player", "player")
-		self.velocity = (0,0)
-		self.power = 50
-		self.fuel = 500
+		self.Vertvelo = 0
+		#trying to make the vertical velocity drop by the gravitational accel every second
+		pygame.time.set_timer(self.Vertvelo - planet.gravity, 1) #not sure how the set_timer thing works.
+		self.Horivelo = 0
+		#two values below are actual values from apollo landing modules, might change to balance gameplay
+		self.mainPower = 4.3584
+		self.auxPower = 0.2748
+		#also actual amount of time those boosters could be used, might change to balance gameplay
+		self.mainFuel = 311
+		self.auxFuel = 290
 		self.image = "SillySteve.jpeg"
 	def forward(self):
 		#lower fuel
 		print("Forward")
-		self.fuel -= 1
+		self.mainFuel -= 1
 		#propel forward in current direction
-		self.velocity = (self.velocity[0] + self.power * math.cos(self.object.rotation), self.velocity[1] + self.power * math.sin(self.object.rotation))
+		self.Vertvelo = self.Vertvelo + (self.mainPower * math.sin(self.object.rotation))
+		self.Horivelo = self.Horivelo + (self.mainPower * math.cos(self.object.rotation))
+	def left(self):
+                print("Left")
+                #lower auxFuel
+                self.auxFuel -= 1
+                #Move left
+                self.Horivelo -= self.auxPower
+        def right(self):
+                print("Right")
+                #lower auxFuel
+                self.auxFuel -= 1
+                #Move left
+                self.Horivelo += self.auxPower
 	def turn(self, angle):
 		print("Turn " + str(angle))
-		self.object.rotation += angle
-	def accelerateDown(self, force):
-		self.velocity = (self.velocity[0],self.velocity[1] - force)
-	
-		
+		self.object.rotation += angle	
