@@ -33,6 +33,8 @@ class Controller:
                         self.ship.left()
                     elif(event.key == pygame.K_RIGHT or event.key == pygame.K_d):
                         self.ship.right()
+                    elif(event.key == pygame.K_SPACE):
+                        self.ship.accelerate((0,-1))
             
             #redraw the entire screen
             self.screen.blit(self.background, (0, 0))

@@ -1,13 +1,14 @@
 import pygame
 import gameobject
 import math
-
+import numpy
 class Ship:
 	def __init__(self, position = (0,0)):
 		self.object = gameobject.GameObject(position, 0, "Player", "player")
+		self.velocity = (0,0)
 		self.Vertvelo = 0
 		#trying to make the vertical velocity drop by the gravitational accel every second
-		pygame.time.set_timer(self.Vertvelo - planet.gravity, 1) #not sure how the set_timer thing works.
+		#pygame.time.set_timer(self.Vertvelo - planet.gravity, 1) #not sure how the set_timer thing works.
 		self.Horivelo = 0
 		#two values below are actual values from apollo landing modules, might change to balance gameplay
 		self.mainPower = 4.3584
@@ -29,12 +30,24 @@ class Ship:
                 self.auxFuel -= 1
                 #Move left
                 self.Horivelo -= self.auxPower
-        def right(self):
+	def right(self):
                 print("Right")
                 #lower auxFuel
                 self.auxFuel -= 1
                 #Move left
                 self.Horivelo += self.auxPower
 	def turn(self, angle):
+		#TURNS AT THE GIVEN ANGLE
 		print("Turn " + str(angle))
 		self.object.rotation += angle	
+	def accelerate(self, direction):
+		#ADDS THE DIRECTION VECTOR TO THE CURRENT VELOCITY
+		rot = self.object.rotation * (math.pi / 180)
+		newDir = numpy.matrix([[direction[0]],[direction[1]]])
+		#rotation matrix converting input vector in screen coordinates to vector relative to ship's rotation
+		mat = numpy.matrix([[math.cos(rot),-math.sin(rot)],[math.sin(rot),math.cos(rot)]])
+		newDir = numpy.matmul(mat,newDir)
+		print(newDir)
+		self.velocity = (self.velocity[0]+float(newDir[0]), self.velocity[0]+float(newDir[1]))
+		print(self.velocity)
+		
