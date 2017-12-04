@@ -6,14 +6,6 @@ class Ship:
 	def __init__(self, position = (0,0)):
 		self.object = gameobject.GameObject(position, 0, "Player", "player")
 		self.velocity = (0,0)
-
-		self.Vertvelo = 0
-		#trying to make the vertical velocity drop by the gravitational accel every second
-		#pygame.time.set_timer(self.Vertvelo - planet.gravity, 1) #not sure how the set_timer thing works.
-		self.Horivelo = 0
-		#trying to make the vertical velocity drop by the gravitational accel every second
-		#pygame.time.set_timer(self.Vertvelo - planet.gravity, 1) #not sure how the set_timer thing works.
-
 		#two values below are actual values from apollo landing modules, might change to balance gameplay
 		self.mainPower = 4.3584
 		self.auxPower = 0.2748
