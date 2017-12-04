@@ -23,18 +23,15 @@ class Ship:
 		self.image = "SillySteve.jpeg"
 	def forward(self):
 		print("Forward")
-		#Lower mainFuel
 		self.mainFuel -= 1
 		#propel forward in current direction
 		self.velocity = (self.velocity[0] + self.MainPower * math.cos(self.object.rotation), self.velocity[1] + self.MainPower * math.sin(self.object.rotation))
 	def left(self):
                 print("Left")
-                #lower auxFuel
                 self.auxFuel -= 1
-                self.Horivelo -= self.auxPower
+                self.velocity = (self.velocity[0] + self.auxPower, self.velocity[1])
 	def right(self):
                 print("Right")
-                #lower auxFuel
                 self.auxFuel -= 1
                 #Move left
                 self.velocity = (self.velocity[0] + self.auxPower, self.velocity[1])
