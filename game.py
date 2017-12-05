@@ -41,6 +41,27 @@ class Controller:
             #self.sprites.draw(self.screen)
             pygame.display.flip()
 
+#alternate gameloop
+#gameLoop = True
+#while gameLoop:
+    #for event in pygame.event.get():
+        #if event.type == pygame.QUIT:
+            #gameLoop = False
+        #if event.type == pygame.KEYDOWN:
+            #if(event.key == pygame.K_UP or event.key == pygame.K_w):
+                #self.ship.forward()
+            #elif(event.key == pygame.K_q):
+                #self.ship.turn(1)
+            #elif(event.key == pygame.K_e):
+                #self.ship.turn(-1)
+            #elif(event.key == pygame.K_LEFT or event.key == pygame.K_a):
+                #self.ship.left()
+            #elif(event.key == pygame.K_RIGHT or event.key == pygame.K_d):
+                #self.ship.right()
+            #elif(event.key == pygame.K_SPACE):
+                #self.ship.accelerate((0,-1))
+    #pygame.display.flip()
+    #clock.tick(50)
 
 def main():
     main_window = Controller()
