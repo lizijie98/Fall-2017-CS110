@@ -42,6 +42,7 @@ class Controller:
             pygame.display.flip()
 
 #alternate gameloop
+#clock = pygame.time.Clock()
 #gameLoop = True
 #while gameLoop:
     #for event in pygame.event.get():
