@@ -8,8 +8,11 @@ class Ship(pygame.sprite.Sprite):
 		self.position = position
 		self.rotation = 0
 		self.velocity = (0,0)
-		self.image = pygame.image.load("sprite.png").convert()
+		#NAME FILE FORMAT ship_*angle*.png
+		self.image = pygame.image.load("normal.png").convert()
+		self.image.set_colorkey((0,0,0))
 		self.rect = self.image.get_rect()
+		print(self.rect)
 		#two values below are actual values from apollo landing modules, might change to balance gameplay
 		self.mainPower = .1
 		self.auxPower = 0.2748
@@ -17,15 +20,18 @@ class Ship(pygame.sprite.Sprite):
 		self.mainFuel = 311
 		self.auxFuel = 290
 
-
 	def turn(self, angle):
 		#TURNS AT THE GIVEN ANGLE
 		print("Turn " + str(angle))
 		self.rotation += angle	
 	def accelerate(self, direction, space):
 		#ADDS THE DIRECTION VECTOR TO THE CURRENT VELOCITY
+		direction = (direction[0] * self.mainPower, direction[1] * self.mainPower)
 		if(space == "world"):
-			self.velocity = (self.velocity[0]+direction[0], self.velocity[0]+direction[1])	
+			#THIS LINE USES MOMENTUM
+			self.velocity = (self.velocity[0]+direction[0], self.velocity[1]+direction[1]) 
+			#self.velocity = direction #NO MOMENTUM
+
 		else:
 			rot = self.rotation * (math.pi / 180)
 			newDir = numpy.matrix([[direction[0]],[direction[1]]])
@@ -36,4 +42,7 @@ class Ship(pygame.sprite.Sprite):
 			print(newDir)
 			self.velocity = (self.velocity[0]+float(newDir[0]), self.velocity[0]+float(newDir[1]))
 			print(self.velocity)
+	def velMagnitude(self):
+		return math.sqrt(self.velocity[0] ** 2 + self.velocity[1] **2)
+		
 		
