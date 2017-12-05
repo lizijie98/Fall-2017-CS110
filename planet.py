@@ -9,15 +9,14 @@ class Planet:
 		#Gradient is used for the maximum change in the terrain height from one node to the 			#next
 		self.nodes = []
 		self.sectors = [] #list of line segment slopes that make up the terrain used for collision later
-		self.nodeSpace = 500/50 #temporary values until pygame is setup to get the screen width
+		self.nodeSpace = 800/50 #temporary values until pygame is setup to get the screen width
 		self.generateTerrain(gradient)
 		self.generateSectors()
 
 	def generateTerrain(self, gradient):
-		for i in range(10):
-			node = ((i+1) * self.nodeSpace, random.randrange(-gradient, gradient))
+		for i in range(50):
+			node = ((i+1) * self.nodeSpace, (600-random.randrange(-gradient, gradient)))
 			self.nodes.append(node)
-		self.object.drawTerrain(self.nodes)
 
 	def generateSectors(self):
 		for i in range(9): #index should be 1 less than nodes
