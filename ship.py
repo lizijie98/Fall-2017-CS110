@@ -3,36 +3,34 @@ import gameobject
 import math
 import numpy
 class Ship(pygame.sprite.Sprite):
-	def __init__(self, position = (0,800)):
+	def __init__(self, fuel, position = (0,100)):
 		super().__init__()
 		self.position = position
 		self.rotation = 0
 		self.velocity = (0,0)
-		#NAME FILE FORMAT ship_*angle*.png
 		self.image = pygame.image.load("normal.png").convert()
 		self.image.set_colorkey((0,0,0))
 		self.rect = self.image.get_rect()
 		print(self.rect)
-		#two values below are actual values from apollo landing modules, might change to balance gameplay
+		
 		self.mainPower = .1
-		self.auxPower = 0.2748
-		#also actual amount of time those boosters could be used, might change to balance gameplay
-		self.mainFuel = 311
-		self.auxFuel = 290
+		
+		self.fuel = fuel
 
 	def turn(self, angle):
 		#TURNS AT THE GIVEN ANGLE
 		print("Turn " + str(angle))
 		self.rotation += angle	
 	def accelerate(self, direction, space):
+		#DECREASES SHIPS FUEL
+		if(self.fuel < 0):
+			self.fuel = 0
 		#ADDS THE DIRECTION VECTOR TO THE CURRENT VELOCITY
 		direction = (direction[0] * self.mainPower, direction[1] * self.mainPower)
-		if(space == "world"):
-			#THIS LINE USES MOMENTUM
+		if(space == "world"): #ACCELERATES THE SHIP USING SCREEN COORDINATES
 			self.velocity = (self.velocity[0]+direction[0], self.velocity[1]+direction[1]) 
-			#self.velocity = direction #NO MOMENTUM
 
-		else:
+		else:  #ALLOWS FOR ACCELERATION RELATIVE TO THE SHIPS ROTATION
 			rot = self.rotation * (math.pi / 180)
 			newDir = numpy.matrix([[direction[0]],[direction[1]]])
 			newDir = newDir * self.mainPower
