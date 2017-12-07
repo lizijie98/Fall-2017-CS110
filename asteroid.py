@@ -1,6 +1,7 @@
 import pygame
 class Asteroid(pygame.sprite.Sprite):
 	def __init__(self, position):
+                #Creates an asteroid sprite at the given position
 		super().__init__()
 		self.position = position
 		self.velocity = (-2,0)

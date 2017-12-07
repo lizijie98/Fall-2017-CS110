@@ -1,9 +1,9 @@
 import pygame
 class FuelPod(pygame.sprite.Sprite):
 	def __init__(self, position):
+                #Creates a fuelpod sprite at the given position
 		super().__init__()
 		self.position = position
-		self.rotation = 0
 		self.velocity = (-2,0)
 		self.image = pygame.image.load("fueltank.png").convert_alpha()
 		self.image.set_colorkey((255,255,255))

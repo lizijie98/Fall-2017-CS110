@@ -1,3 +1,5 @@
+##STEVEN LANDER BY HAYDEN, JACK, AND DILLON
+##PROPOSAL DOCUMENT LINK https://docs.google.com/a/binghamton.edu/document/d/13P1opyWf36rsluvURYljHppWx61UWksmms042lXPTgI/edit?usp=sharing
 import pygame
 import random
 import ship
@@ -7,6 +9,9 @@ import fuelpod
 import asteroid
 class Controller:
         def __init__(self, width=800, height=800):
+                #SETS UP PYGAME WINDOW AND SETS STARTING VARIABLES TO BE USED LATER ON		
+
+		#GENERAL PYGAME SETUP
                 pygame.init()
                 pygame.display.set_caption("Steven Lander")
                 self.width = width
@@ -19,23 +24,27 @@ class Controller:
                 self.titleFont = pygame.font.SysFont("monospace", 45)
                 self.mainFont = pygame.font.SysFont("monospace",22)
 
+		#HIGHSCORE INFORMATION
                 scoreFile = open("score.txt", "r")
                 self.highscore = float(scoreFile.readline())
                 scoreFile.close()
 
+		#VARIABLES FOR GAMESTATE AND LOGIC
                 self.win = False
                 self.died = False
                 self.menu = True
                 self.enableInput = True
                 self.score = 0
                 self.difficulty = 0 #used for score calculation
-
                 self.spawnRate = 5 #used to determine the spawn rate of asteroids and fuelpods
+
+                #SPRITES AND OBJECTS
                 self.planet = planet.Planet(.1,20)
                 self.asteroids = []#lists to keep track of objects on the screen
                 self.fuelpods = []
                 self.sprites = pygame.sprite.Group()
                 self.terrain = pygame.Rect(0,0,0,0)
+
         def mainLoop(self):	
                 while True:
                     ##THIS SECTION IS USED TO DRAW THE MAIN MENU##

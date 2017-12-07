@@ -1,9 +1,9 @@
 import random
 class Planet:
 	def __init__(self, gravity, gradient):
+		#CREATES A PLANET WITH THE GIVEN GRAVITY
+                #GENERATES A RANDOM TERRAIN BASED ON THE GIVEN GRADIENT
 		self.gravity = gravity
-		#GENERATES THE TERRAIN OF THE PLANET
-		#Gradient is used for the maximum change in the terrain height from one node to the next
 		self.nodes = []
 		self.nodeSpace = 800/20 #Based on screen width and number of nodes 
 		self.generateTerrain(gradient)

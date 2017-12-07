@@ -3,21 +3,23 @@ import math
 import numpy
 class Ship(pygame.sprite.Sprite):
 	def __init__(self, fuel, position = (0,100)):
+		#CREATES A SHIP OBJECT WITH THE GIVEN FUEL AMOUNT
+		#A specific position can be passed, however default is (0,100)
+
 		super().__init__()
-		self.position = position
-		self.rotation = 0
-		self.velocity = (0,0)
+		self.position = position #position of the ship on the screen
+		self.rotation = 0 #ship's rotation, 0 = vertical
+		self.velocity = (0,0) #ships velocity
+
+		#Sprite info
 		self.image = pygame.image.load("normal.png").convert_alpha()
 		self.rect = self.image.get_rect()
-		print(self.rect)
 		
-		self.mainPower = .1
-		
+		self.mainPower = .1 #Thrust of the ship
 		self.fuel = fuel
 
 	def turn(self, angle):
 		#TURNS AT THE GIVEN ANGLE
-		print("Turn " + str(angle))
 		self.rotation += angle	
 	def accelerate(self, direction, space):
 		#ACCELERATES THE SHIP IN THE GIVEN DIRECTION, MODIFIES THE INPUT DIRECTION BASED ON THE SPACE VARIABLE IF NECESSARY
